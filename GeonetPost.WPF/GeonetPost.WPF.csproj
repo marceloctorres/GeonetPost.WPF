@@ -75,7 +75,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\MapViewViewpointChangedBehavior.cs" />
     <Compile Include="Behaviors\SetMapViewViewportBehavior.cs" />
+    <Compile Include="Converters\GeographicCoordinateConverter.cs" />
     <Compile Include="ViewModels\MapWindowViewModel.cs" />
     <Compile Include="Views\MapWindow.xaml.cs">
       <DependentUpon>MapWindow.xaml</DependentUpon>

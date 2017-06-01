@@ -1,12 +1,17 @@
 ﻿<Window x:Class="GeonetPost.WPF.Views.MapWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:bh="clr-namespace:GeonetPost.WPF.Behaviors"
+        xmlns:cv="clr-namespace:GeonetPost.WPF.Converters"
         xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True">
+  <Window.Resources>
+    <ResourceDictionary>
+      <cv:GeographicCoordinateConverter x:Key="GeoCoorConverter" />
+    </ResourceDictionary>
+  </Window.Resources>
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="*" />
@@ -16,8 +21,23 @@
                   GraphicsOverlays="{Binding GraphicsOverlays}">
       <ei:Interaction.Behaviors>
         <bh:SetMapViewViewportBehavior Viewpoint="{Binding Viewpoint}" />
+        <bh:MapViewViewpointChangedBehavior Command="{Binding UpdateViewpointCommand}" />
       </ei:Interaction.Behaviors>
     </esri:MapView>
+    <Grid Margin="10"
+         
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top"
+          Background="Beige">
+      <StackPanel Orientation="Vertical" Margin="10"
+                  Height="100">
+        <TextBlock Text="{Binding UpdatedViewpoint.TargetGeometry.XMin, Converter={StaticResource GeoCoorConverter}, ConverterParameter='X', StringFormat='XMin = {0}'}" />
+        <TextBlock Text="{Binding UpdatedViewpoint.TargetGeometry.YMin, Converter={StaticResource GeoCoorConverter}, ConverterParameter='Y', StringFormat='YMin = {0}'}" />
+        <TextBlock Text="{Binding UpdatedViewpoint.TargetGeometry.XMax, Converter={StaticResource GeoCoorConverter}, ConverterParameter='X', StringFormat='XMax = {0}'}" />
+        <TextBlock Text="{Binding UpdatedViewpoint.TargetGeometry.YMax, Converter={StaticResource GeoCoorConverter}, ConverterParameter='Y', StringFormat='YMax = {0}'}" />
+      </StackPanel>
+
+    </Grid>
     <StackPanel Grid.Row="1"
                 Orientation="Horizontal">
       <Button Margin="5"

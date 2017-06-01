@@ -44,6 +44,17 @@ namespace GeonetPost.WPF.ViewModels
       set { SetProperty(ref _viewpoint, value); }
     }
 
+    private Viewpoint _updatedViewpoint;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public Viewpoint UpdatedViewpoint
+    {
+      get { return _updatedViewpoint; }
+      set { SetProperty(ref _updatedViewpoint, value); }
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -54,12 +65,18 @@ namespace GeonetPost.WPF.ViewModels
     /// </summary>
     public ICommand ZoomCommand { get; private set; }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public ICommand UpdateViewpointCommand { get; private set; }
+
     public MapWindowViewModel()
     {
       MyMap = new Map(Basemap.CreateStreets());
       GraphicsOverlays = new GraphicsOverlayCollection();
       ButtonClickCommand = new DelegateCommand(ButtonClickAction);
       ZoomCommand = new DelegateCommand(ZoomAction);
+      UpdateViewpointCommand = new DelegateCommand<Viewpoint>(UpdateViewpointAction);
 
       GraphicsOverlay go = new GraphicsOverlay()
       {
@@ -89,6 +106,19 @@ namespace GeonetPost.WPF.ViewModels
     private void ZoomAction()
     {
       Viewpoint = new Viewpoint(4, -74, 5000000);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="vp"></param>
+    private void UpdateViewpointAction(Viewpoint vp)
+    {
+      var projectedVp = new Viewpoint(GeometryEngine.Project(vp.TargetGeometry, SpatialReferences.Wgs84), vp.Camera);
+      if (UpdatedViewpoint == null || projectedVp.ToJson() != UpdatedViewpoint.ToJson())
+      {
+        UpdatedViewpoint = projectedVp;
+      }
     }
   }
 }
