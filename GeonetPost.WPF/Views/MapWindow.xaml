@@ -25,16 +25,27 @@
       </ei:Interaction.Behaviors>
     </esri:MapView>
     <Grid Margin="10"
-         
           HorizontalAlignment="Left"
           VerticalAlignment="Top"
           Background="Beige">
       <StackPanel Orientation="Vertical" Margin="10"
                   Height="100">
-        <TextBlock Text="{Binding UpdatedViewpoint.TargetGeometry.XMin, Converter={StaticResource GeoCoorConverter}, ConverterParameter='X', StringFormat='XMin = {0}'}" />
-        <TextBlock Text="{Binding UpdatedViewpoint.TargetGeometry.YMin, Converter={StaticResource GeoCoorConverter}, ConverterParameter='Y', StringFormat='YMin = {0}'}" />
-        <TextBlock Text="{Binding UpdatedViewpoint.TargetGeometry.XMax, Converter={StaticResource GeoCoorConverter}, ConverterParameter='X', StringFormat='XMax = {0}'}" />
-        <TextBlock Text="{Binding UpdatedViewpoint.TargetGeometry.YMax, Converter={StaticResource GeoCoorConverter}, ConverterParameter='Y', StringFormat='YMax = {0}'}" />
+        <TextBlock Text="{Binding UpdatedViewpoint.TargetGeometry.XMin, 
+          Converter={StaticResource GeoCoorConverter}, 
+          ConverterParameter='X', 
+          StringFormat='XMin = {0}'}" />
+        <TextBlock Text="{Binding UpdatedViewpoint.TargetGeometry.YMin, 
+          Converter={StaticResource GeoCoorConverter}, 
+          ConverterParameter='Y', 
+          StringFormat='YMin = {0}'}" />
+        <TextBlock Text="{Binding UpdatedViewpoint.TargetGeometry.XMax, 
+          Converter={StaticResource GeoCoorConverter}, 
+          ConverterParameter='X', 
+          StringFormat='XMax = {0}'}" />
+        <TextBlock Text="{Binding UpdatedViewpoint.TargetGeometry.YMax, 
+          Converter={StaticResource GeoCoorConverter}, 
+          ConverterParameter='Y', 
+          StringFormat='YMax = {0}'}" />
       </StackPanel>
 
     </Grid>
