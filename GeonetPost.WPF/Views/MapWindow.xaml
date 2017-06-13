@@ -2,10 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:bh="clr-namespace:GeonetPost.WPF.Behaviors"
-        xmlns:cv="clr-namespace:GeonetPost.WPF.Converters"
         xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:bh="clr-namespace:GeonetPost.WPF.Behaviors"
+        xmlns:cv="clr-namespace:GeonetPost.WPF.Converters"
         prism:ViewModelLocator.AutoWireViewModel="True">
   <Window.Resources>
     <ResourceDictionary>
